@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  /* display: flex; */
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+.column-full {
+  flex-basis: 100%;
+}
+
+ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.logo ul {
+  justify-content: center;
+}

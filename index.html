@@ -1,20 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
-  <link rel="icon" href="images/favicon.ico">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <header>
-  </header>
-  <main>
-  </main>
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>If Books Could Kill</title>
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="row">
+          <div class="column-full">
+            <div data-view="nav-bar">
+              <ul>
+                <li><a href="home">Home</a></li>
+                <li><a href="genres">Genres</a></li>
+                <li><a href="favorites">Favorites</a></li>
+                <li class="logo">If Books Could Kill</li>
+                <li><a href="contact">Contact Us</a></li>
+                <li><a href="about">About</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div class="row">
+          <div class="column-full search-bar">
+            <input type="text" id="search-bar" placeholder="Search" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="column-full">
+            <div class="homepage">
+              <div class="homepage-photo"></div>
+              <h1>All of your favorites</h1>
+              <h1>in one place</h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="row bottom">
+          <div class="column-full">
+            <h2>
+              Start by searching for your favorite author, title, or genre
+            </h2>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>

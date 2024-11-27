@@ -1,0 +1,61 @@
+.container {
+  background-color: #212320;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+a {
+  text-decoration: none;
+  color: #d8d0bc;
+}
+
+a:hover {
+  cursor: pointer;
+  color: #c0ab77;
+}
+
+.logo {
+  color: #d8d0bc;
+  font-size: 2rem;
+}
+
+li {
+  list-style-type: none;
+}
+
+ul {
+  margin-top: 0;
+}
+
+#search-bar {
+  font-family: 'Cormorant Garamond', serif;
+  background-color: #d9d9d9;
+  color: #9d9c9c;
+  border-radius: 7px;
+  padding: 3px;
+}
+
+/* .column-full .search-bar {
+  background-color: black;
+} */
+
+.homepage-photo {
+  background-image: url('./images/books homepage.jpg');
+  background-size: cover;
+  filter: contrast(50%);
+  position: relative;
+  width: 1100px;
+  height: 550px;
+}
+
+h1 {
+  color: #d8d0bc;
+}
+
+h2 {
+  color: #d8d0bc;
+}
+
+.row .bottom {
+  background-color: #c0ab77;
+  color: #212320;
+}
