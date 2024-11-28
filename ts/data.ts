@@ -10,7 +10,7 @@
 // async function fetchData(): Promise<void> {
 //   try {
 //     const response = await fetch(
-//       'https://www.googleapis.com/books/v1/volumes?q=thriller&key=AIzaSyCKFQdUXH7FtHhegJ_aEvfXbYQPDqInJIM',
+//       'https://www.googleapis.com/books/v1/volumes?q=thriller&key=',
 //     );
 //     if (!response.ok) {
 //       throw new Error(`HTTP error! Status: ${response.status}`);
