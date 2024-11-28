@@ -6,6 +6,10 @@
 a {
   text-decoration: none;
   color: #d8d0bc;
+  margin-top: 20%;
+  padding-top: 20%;
+  font-size: 1.25rem;
+  font-weight: 100;
 }
 
 a:hover {
@@ -16,6 +20,7 @@ a:hover {
 .logo {
   color: #d8d0bc;
   font-size: 2rem;
+  font-weight: 100;
 }
 
 li {
@@ -23,39 +28,81 @@ li {
 }
 
 ul {
-  margin-top: 0;
+  display: flex;
+  align-items: center;
 }
 
 #search-bar {
   font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
   background-color: #d9d9d9;
-  color: #9d9c9c;
+  color: #212320;
   border-radius: 7px;
   padding: 3px;
+  padding-right: 15%;
+  outline: none;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
+#search-bar:focus {
+  border-color: #730220;
+  background-color: #edecec;
+}
+
+#search-bar::placeholder {
+  color: #9d9c9c;
+}
+
+/* .fa-magnifying-glass {
+  color: #9d9c9c;
+} */
+
 /* .column-full .search-bar {
-  background-color: black;
+  margin: 0 auto;
 } */
 
 .homepage-photo {
-  background-image: url('./images/books homepage.jpg');
+  background-image: url('../images/books-homepage.jpg');
   background-size: cover;
-  filter: contrast(50%);
+  background-position: center;
+  filter: contrast(75%);
   position: relative;
-  width: 1100px;
-  height: 550px;
+  width: 100%;
+  height: 65vh;
 }
 
 h1 {
   color: #d8d0bc;
+  position: absolute;
+  padding: 20px;
+  font-size: 4rem;
+  font-weight: 200;
+}
+
+#favorites {
+  top: 10%;
+  left: 10%;
+}
+
+#place {
+  top: 50%;
+  left: 60%;
 }
 
 h2 {
-  color: #d8d0bc;
+  color: #212320;
+  font-size: 2rem;
 }
 
-.row .bottom {
-  background-color: #c0ab77;
-  color: #212320;
+.row.bottom {
+  background-color: #d8d0bc;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.column-full.bottom {
+  display: flex;
+  justify-content: center;
 }
