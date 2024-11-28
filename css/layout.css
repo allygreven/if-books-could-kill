@@ -25,3 +25,21 @@ ul {
 .logo ul {
   justify-content: center;
 }
+
+/* ///////////Responsive Layout///////////// */
+
+/* @media screen and (width <= 576px) {
+  .row .column-full {
+    flex-basis: 50%;
+  }
+}
+
+@media screen and (width <= 768px) {
+  .row .column-full {
+    flex-basis: calc(100% / 3);
+  }
+
+  .container {
+    font-size: 10%;
+  }
+} */
