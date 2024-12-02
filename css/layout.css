@@ -42,4 +42,16 @@ ul {
   .container {
     font-size: 10%;
   }
-} */
+
+   .nav-bar a {
+    font-size: 0; hides text
+  /* }
+
+  .nav-bar a i {
+    font-size: 24px; icon size
+    /* color: #007bff; change color
+     }
+
+  .nav-bar li {
+    margin-right: 0; /* Remove spacing between items } }
+*/
