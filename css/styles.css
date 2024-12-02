@@ -55,7 +55,7 @@ ul {
   color: #8a733b;
 }
 
-.fa-solid.fa-magnifying-glass {
+#desktop-mag {
   color: #8a733b;
   font-size: 1.25rem;
   position: absolute;
@@ -63,7 +63,7 @@ ul {
   right: 0.5rem;
 }
 
-.fa-solid.fa-magnifying-glass:hover {
+#desktop-mag:hover {
   cursor: pointer;
   color: #730220;
 }
@@ -118,3 +118,31 @@ h2 {
   display: flex;
   justify-content: center;
 }
+
+img {
+  width: 200px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  height: 200px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.genres {
+  display: flex;
+  position: relative;
+}
+
+/* #mobile-nav-bar {
+  display: none;
+}
+
+@media screen and (width <= 576px) {
+  #mobile-nav-bar {
+    background-color: #212320;
+    color: #d8d0bc;
+  }
+
+  #mobile-nav-bar:active {
+    color: #c0ab77;
+  }
+} */
