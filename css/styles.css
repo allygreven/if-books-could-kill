@@ -32,6 +32,10 @@ ul {
   align-items: center;
 }
 
+form {
+  display: flex;
+}
+
 #search-bar {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
@@ -39,7 +43,7 @@ ul {
   color: #212320;
   border-radius: 7px;
   padding: 3px;
-  padding-right: 15%;
+  width: 300px;
   outline: none;
   transition:
     border-color 0.3s ease,
@@ -49,6 +53,7 @@ ul {
 #search-bar:focus {
   border-color: #730220;
   background-color: #efe6d2;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 #search-bar::placeholder {
@@ -73,6 +78,22 @@ ul {
   justify-content: right;
   right: 3%;
   background-color: #212320;
+}
+
+input[type='radio'] {
+  accent-color: #730220;
+  cursor: pointer;
+  margin: 0;
+}
+
+label {
+  display: inline-flex; /* Ensures proper alignment */
+  align-items: center; /* Aligns radio and text vertically */
+  gap: 7px; /* Adds space between the radio button and text */
+  cursor: pointer; /* Improves UX by making the label clickable */
+  color: #d8d0bc;
+  position: relative;
+  padding-right: 10px;
 }
 
 .homepage-photo {

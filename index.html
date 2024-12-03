@@ -53,10 +53,21 @@
       <main>
         <div class="row">
           <div class="column-full search-bar">
-            <input type="text" id="search-bar" placeholder="Search" />
-            <i
-              class="fa-solid fa-magnifying-glass magnifying-glass"
-              id="desktop-mag"></i>
+            <form id="search-form">
+              <label
+                ><input
+                  type="radio"
+                  name="option"
+                  value="author" />Author</label
+              >
+              <label
+                ><input type="radio" name="option" value="title" />Title</label
+              >
+              <input type="text" id="search-bar" placeholder="Search" />
+              <i
+                class="fa-solid fa-magnifying-glass magnifying-glass"
+                id="desktop-mag"></i>
+            </form>
           </div>
         </div>
 
