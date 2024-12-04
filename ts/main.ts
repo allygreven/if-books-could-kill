@@ -15,8 +15,8 @@ async function fetchBooksByTitle(searchValue: string): Promise<void> {
     if (!response1.ok) {
       throw new Error(`HTTP error! Status: ${response1.status}`);
     }
-    const data1 = (await response1.json()) as Data;
-    console.log(data1);
+    const dataTitle = (await response1.json()) as Data;
+    console.log(dataTitle);
   } catch (error) {
     console.error('Error:', error);
   }
@@ -30,8 +30,8 @@ async function fetchBooksByAuthor(searchValue: string): Promise<void> {
     if (!response2.ok) {
       throw new Error(`HTTP error! Status: ${response2.status}`);
     }
-    const data2 = (await response2.json()) as Data;
-    console.log(data2);
+    const dataAuthor = (await response2.json()) as Data;
+    console.log(dataAuthor);
   } catch (error) {
     console.error('Error:', error);
   }
@@ -51,3 +51,27 @@ $searchForm.addEventListener('submit', async (event) => {
     await fetchBooksByAuthor(searchValue);
   }
 });
+
+function renderImages(): string {
+  const titleResults = fetchBooksByTitle('title');
+  const authorResults = fetchBooksByAuthor('author');
+  const combinedResults = [...titleResults, ...authorResults];
+
+  const imageLinks = combinedResults
+    .map((book) => book.volumeInfo?.imageLinks?.thumbnail)
+    .filter((link) => link);
+
+  const $container = document.getElementById('image-container');
+  if (!$container) throw new Error('$container not found');
+
+  $container.innerHTML = '';
+
+  imageLinks.forEach((link) => {
+    const img = document.createElement('img');
+    img.src = link;
+    img.alt = 'Book Cover';
+    $container.appendChild(img);
+  });
+}
+
+// dataTitle dataAuthor
