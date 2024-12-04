@@ -87,10 +87,10 @@ input[type='radio'] {
 }
 
 label {
-  display: inline-flex; /* Ensures proper alignment */
-  align-items: center; /* Aligns radio and text vertically */
-  gap: 7px; /* Adds space between the radio button and text */
-  cursor: pointer; /* Improves UX by making the label clickable */
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
   color: #d8d0bc;
   position: relative;
   padding-right: 10px;
@@ -140,6 +140,8 @@ h2 {
   justify-content: center;
 }
 
+/* GENRES */
+
 img {
   width: 200px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -153,17 +155,42 @@ img {
   position: relative;
 }
 
-/* #mobile-nav-bar {
+/* RESPONSIVE LAYOUT */
+
+.mobile-nav-bar {
   display: none;
 }
 
 @media screen and (width <= 576px) {
-  #mobile-nav-bar {
-    background-color: #212320;
-    color: #d8d0bc;
+  a {
+    display: none;
   }
 
-  #mobile-nav-bar:active {
-    color: #c0ab77;
+  #search-form {
+    display: none;
   }
-} */
+
+  .mobile-nav-bar {
+    display: flex;
+    background-color: #212320;
+    color: #d8d0bc;
+    position: fixed;
+    bottom: 0;
+    font-size: 50px;
+    gap: 50px;
+    margin-bottom: 0;
+    padding-left: 0;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    display: flex;
+    margin-top: 0;
+    text-align: center;
+  }
+}

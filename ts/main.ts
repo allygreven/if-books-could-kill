@@ -40,13 +40,11 @@ async function fetchBooksByAuthor(searchValue: string): Promise<void> {
 $searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const searchValue = encodeURI($searchBar.value);
-  console.log(searchValue);
   const $radio = document.querySelector(
     'input[type="radio"]:checked',
   ) as HTMLInputElement;
   if (!$radio) throw new Error('$radio query failed');
   const searchType = $radio.value;
-  console.log(searchType);
   if (searchType === 'title') {
     await fetchBooksByTitle(searchValue);
   } else if (searchType === 'author') {
