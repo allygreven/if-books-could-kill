@@ -7,6 +7,8 @@ if (!$searchBar) throw new Error('$searchBar does not exists');
 const $searchForm = document.getElementById('search-form') as HTMLFormElement;
 if (!$searchForm) throw new Error('$searchForm does not exist');
 
+/// ////////// fetching for title////////////
+
 async function fetchBooksByTitle(searchValue: string): Promise<void> {
   try {
     const response1 = await fetch(
@@ -16,11 +18,18 @@ async function fetchBooksByTitle(searchValue: string): Promise<void> {
       throw new Error(`HTTP error! Status: ${response1.status}`);
     }
     const dataTitle = (await response1.json()) as Data;
+    // renderImages(dataTitle)
+    for (let i = 0; i < dataTitle.items.length; i++) {
+      const $authorRow = renderImages(dataTitle.items[i]);
+      $searchResults?.appendChild($authorRow);
+    }
     console.log(dataTitle);
   } catch (error) {
     console.error('Error:', error);
   }
 }
+
+/// ///////////////// fetching for author////////////////
 
 async function fetchBooksByAuthor(searchValue: string): Promise<void> {
   try {
@@ -31,11 +40,17 @@ async function fetchBooksByAuthor(searchValue: string): Promise<void> {
       throw new Error(`HTTP error! Status: ${response2.status}`);
     }
     const dataAuthor = (await response2.json()) as Data;
+    for (let i = 0; i < dataAuthor.items.length; i++) {
+      const $imageRow = renderImages(dataAuthor.items[i]);
+      $searchResults?.appendChild($imageRow);
+    }
     console.log(dataAuthor);
   } catch (error) {
     console.error('Error:', error);
   }
 }
+
+/// ////////////// /search bar and radio button clicked///////////////
 
 $searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -50,28 +65,50 @@ $searchForm.addEventListener('submit', async (event) => {
   } else if (searchType === 'author') {
     await fetchBooksByAuthor(searchValue);
   }
+  viewSwap('search-results');
 });
 
-function renderImages(): string {
-  const titleResults = fetchBooksByTitle('title');
-  const authorResults = fetchBooksByAuthor('author');
-  const combinedResults = [...titleResults, ...authorResults];
+const $searchResults = document.querySelector('[data-view="search-results"]');
+if (!$searchResults) throw new Error('$searchResults not found');
 
-  const imageLinks = combinedResults
-    .map((book) => book.volumeInfo?.imageLinks?.thumbnail)
-    .filter((link) => link);
+/// ////////////////////////Render Images from URL/////////////////
 
-  const $container = document.getElementById('image-container');
-  if (!$container) throw new Error('$container not found');
+function renderImages(book: Item): HTMLDivElement {
+  console.log(book);
 
-  $container.innerHTML = '';
+  const $row = document.createElement('div');
+  $row.className = 'row';
 
-  imageLinks.forEach((link) => {
-    const img = document.createElement('img');
-    img.src = link;
-    img.alt = 'Book Cover';
-    $container.appendChild(img);
-  });
+  const $columnFull = document.createElement('div');
+  $columnFull.className = 'column-full';
+
+  if (book.volumeInfo.imageLinks) {
+    const $img = document.createElement('img');
+    $img.src = book.volumeInfo.imageLinks.thumbnail;
+    $img.alt = 'Book Cover';
+    $columnFull.appendChild($img);
+  }
+  //  else **** placeholder image
+  $row.appendChild($columnFull);
+
+  return $row;
 }
 
-// dataTitle dataAuthor
+const $homepage = document.querySelector('[data-view="homepage"]');
+if (!$homepage) throw new Error('$homepage does not exist');
+
+/// ////////////// Viewswap function/////////////////
+
+function viewSwap(viewName: string): any {
+  data.view = viewName;
+  if (!$homepage) throw new Error('$homepage does not exist');
+  if (!$searchResults) throw new Error('$searchResults not found');
+
+  if (viewName === 'homepage') {
+    $homepage.className = 'homepage';
+    $searchResults.className = 'search-results hidden';
+  } else {
+    $homepage.className = 'homepage hidden';
+    $searchResults.className = 'search-results';
+  }
+}

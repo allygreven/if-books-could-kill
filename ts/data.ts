@@ -1,13 +1,25 @@
 /* exported data */
 interface ImageLinks {
-  small: string;
+  smallThumbnail: string;
+  thumbnail: string;
+}
+
+interface Book {
+  view: string;
+  authors: string[];
+  title: string;
+  imageLinks: ImageLinks;
+  categories: string[];
+}
+
+interface Item {
+  volumeInfo: Book;
 }
 
 interface Data {
-  authors: string[];
-  title: string;
-  imageLinks: ImageLinks | null;
-  categories: string[];
+  items: Item[];
+  kind: string;
+  totalItems: number;
 }
 
 const data = readData();
@@ -17,7 +29,7 @@ function writeData(): void {
   localStorage.setItem('data storage', dataJSON);
 }
 
-function readData(): Data {
+function readData(): Book {
   const dataJSON = localStorage.getItem('data storage');
   if (dataJSON) {
     return JSON.parse(dataJSON);
