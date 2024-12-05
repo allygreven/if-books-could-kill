@@ -100,3 +100,10 @@ function viewSwap(viewName) {
         $searchResults.className = 'search-results';
     }
 }
+const $home = document.querySelector('.home');
+if (!$home)
+    throw new Error('$home query failed');
+/// //////////// go back to homepage/////////
+$home.addEventListener('click', () => {
+    viewSwap('homepage');
+});
