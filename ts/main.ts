@@ -126,13 +126,13 @@ function viewSwap(viewName: string): any {
 
   /// ///search results to favorites///////
 
-  if (viewName === 'search-results') {
-    $searchResults.className = 'search-results';
-    $allFavorites.className = 'all-favorites hidden';
-  } else {
-    $searchResults.className = 'search-results hidden';
-    $allFavorites.className = 'all-favorites';
-  }
+  // if (viewName === 'search-results') {
+  //   $searchResults.className = 'search-results';
+  //   $allFavorites.className = 'all-favorites hidden';
+  // } else {
+  //   $searchResults.className = 'search-results hidden';
+  //   $allFavorites.className = 'all-favorites';
+  // }
 }
 
 const $home = document.querySelector('.home');
@@ -147,11 +147,19 @@ $home.addEventListener('click', () => {
 /// ///////go to favorites////////
 
 $allFavorites.addEventListener('click', () => {
-  viewSwap('favorites');
+  viewSwap('all-favorites');
 });
 
 /// /////////////hearts click////////////
+
 const $hearts = document.querySelector('.cover-hearts');
 if (!$hearts) throw new Error('$hearts query failed');
 
-$hearts.addEventListener('click'), () => {};
+$hearts.addEventListener('click', (event) => {
+  const $eventTarget = event.target as HTMLElement;
+
+  if ($eventTarget.tagName === 'i') {
+    const $closest = $eventTarget.closest('img');
+    $closest?.remove();
+  }
+});
