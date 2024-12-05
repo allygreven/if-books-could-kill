@@ -35,9 +35,13 @@ function readData(): Book {
     return JSON.parse(dataJSON);
   } else {
     return {
+      view: '',
       authors: [],
       title: '',
-      imageLinks: null,
+      imageLinks: {
+        smallThumbnail: '',
+        thumbnail: '',
+      },
       categories: [],
     };
   }
