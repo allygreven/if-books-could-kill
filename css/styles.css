@@ -165,20 +165,23 @@ img {
 
 /* GENRES */
 
-/* img {
+.image {
   width: 200px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   height: 200px;
   object-fit: cover;
   object-position: center center;
-} */
+}
 
-/* change name!!! */
-
-/* .genres {
+.book-genres {
   display: flex;
   position: relative;
-} */
+}
+
+h3 {
+  color: #d8d0bc;
+  font-size: 1.5rem;
+}
 
 /* RESPONSIVE LAYOUT */
 
