@@ -1,20 +1,113 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
-  <link rel="icon" href="images/favicon.ico">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <header>
-  </header>
-  <main>
-  </main>
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>If Books Could Kill</title>
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <!-- NAV BAR -->
+    <div class="container">
+      <header>
+        <div class="row">
+          <div class="column-full">
+            <div data-view="nav-bar">
+              <ul>
+                <li><a class="home">Home</a></li>
+                <li><a class="genres">Genres</a></li>
+                <li class="logo">If Books Could Kill</li>
+                <li><a class="favorites">Favorites</a></li>
+                <li><a class="contact">Contact Us</a></li>
+              </ul>
+            </div>
+
+            <!-- MOBILE NAV BAR -->
+
+            <div data-id="mobile-nav-bar">
+              <ul class="mobile-nav-bar">
+                <li class="home">
+                  <i class="fa-solid fa-house"></i><a href="home"></a>
+                </li>
+                <li class="search">
+                  <i class="fa-solid fa-magnifying-glass"></i
+                  ><a href="search"></a>
+                </li>
+                <li class="favorites">
+                  <i class="fa-solid fa-heart"></i><a href="favorites"></a>
+                </li>
+                <li class="contacts">
+                  <i class="fa-regular fa-comment"></i><a href="contact"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- SEARCH BAR -->
+
+      <main>
+        <div class="row">
+          <div class="column-full search-bar">
+            <form id="search-form">
+              <label
+                ><input
+                  type="radio"
+                  name="option"
+                  value="author" />Author</label
+              >
+              <label
+                ><input type="radio" name="option" value="title" />Title</label
+              >
+              <input type="text" id="search-bar" placeholder="Search" />
+              <i
+                class="fa-solid fa-magnifying-glass magnifying-glass"
+                id="desktop-mag"></i>
+            </form>
+          </div>
+        </div>
+
+        <!-- homepage -->
+        <div data-view="homepage">
+          <div class="row">
+            <div class="column-full">
+              <div class="homepage-photo"></div>
+              <div class="homepage">
+                <h1 id="favorites">All of your favorites</h1>
+                <h1 id="place">in one place</h1>
+              </div>
+            </div>
+          </div>
+
+          <div class="row bottom">
+            <div class="column-full bottom">
+              <h2>Start by searching for your favorite title or author</h2>
+            </div>
+          </div>
+        </div>
+
+        <!-- search results -->
+
+        <div data-view="search-results" id="search-results">
+          <div class="bookshelf-photo"></div>
+        </div>
+
+        <!-- Genres -->
+      </main>
+    </div>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
