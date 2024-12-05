@@ -71,19 +71,28 @@ function renderImages(book) {
     $row.className = 'row';
     const $columnFull = document.createElement('div');
     $columnFull.className = 'column-full';
+    const $wrapper = document.createElement('div');
+    $wrapper.className = 'wrapper';
+    const $hearts = document.createElement('i');
+    $hearts.className = 'fa-solid fa-heart cover-hearts';
     if (book.volumeInfo.imageLinks) {
         const $img = document.createElement('img');
         $img.src = book.volumeInfo.imageLinks.thumbnail;
         $img.alt = 'Book Cover';
-        $columnFull.appendChild($img);
+        $wrapper.appendChild($img);
+        $wrapper.appendChild($hearts);
     }
-    //  else **** placeholder image
+    //  else **** placeholder image?
     $row.appendChild($columnFull);
+    $columnFull.appendChild($wrapper);
     return $row;
 }
 const $homepage = document.querySelector('[data-view="homepage"]');
 if (!$homepage)
     throw new Error('$homepage does not exist');
+const $allFavorites = document.querySelector('#all-favorites');
+if (!$allFavorites)
+    throw new Error('$AllFavorites query failed');
 /// ////////////// Viewswap function/////////////////
 function viewSwap(viewName) {
     data.view = viewName;
@@ -91,6 +100,8 @@ function viewSwap(viewName) {
         throw new Error('$homepage does not exist');
     if (!$searchResults)
         throw new Error('$searchResults not found');
+    if (!$allFavorites)
+        throw new Error('$allFavorites query failed');
     if (viewName === 'homepage') {
         $homepage.className = 'homepage';
         $searchResults.className = 'search-results hidden';
@@ -98,6 +109,15 @@ function viewSwap(viewName) {
     else {
         $homepage.className = 'homepage hidden';
         $searchResults.className = 'search-results';
+    }
+    /// ///search results to favorites///////
+    if (viewName === 'search-results') {
+        $searchResults.className = 'search-results';
+        $allFavorites.className = 'all-favorites hidden';
+    }
+    else {
+        $searchResults.className = 'search-results hidden';
+        $allFavorites.className = 'all-favorites';
     }
 }
 const $home = document.querySelector('.home');
@@ -107,3 +127,12 @@ if (!$home)
 $home.addEventListener('click', () => {
     viewSwap('homepage');
 });
+/// ///////go to favorites////////
+$allFavorites.addEventListener('click', () => {
+    viewSwap('favorites');
+});
+/// /////////////hearts click////////////
+const $hearts = document.querySelector('.cover-hearts');
+if (!$hearts)
+    throw new Error('$hearts query failed');
+$hearts.addEventListener('click'), () => { };

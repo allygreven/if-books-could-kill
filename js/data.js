@@ -11,9 +11,13 @@ function readData() {
     }
     else {
         return {
+            view: '',
             authors: [],
             title: '',
-            imageLinks: null,
+            imageLinks: {
+                smallThumbnail: '',
+                thumbnail: '',
+            },
             categories: [],
         };
     }
