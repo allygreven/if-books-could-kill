@@ -20,7 +20,7 @@ async function fetchBooksByTitle(searchValue: string): Promise<void> {
     const dataTitle = (await response1.json()) as Data;
     // renderImages(dataTitle)
     for (let i = 0; i < dataTitle.items.length; i++) {
-      const $authorRow = renderImages(dataTitle.items[i]);
+      const $authorRow = renderImages(dataTitle.items[i].volumeInfo);
       $searchResults?.appendChild($authorRow);
     }
     console.log(dataTitle);
@@ -41,7 +41,7 @@ async function fetchBooksByAuthor(searchValue: string): Promise<void> {
     }
     const dataAuthor = (await response2.json()) as Data;
     for (let i = 0; i < dataAuthor.items.length; i++) {
-      const $imageRow = renderImages(dataAuthor.items[i]);
+      const $imageRow = renderImages(dataAuthor.items[i].volumeInfo);
       $searchResults?.appendChild($imageRow);
     }
     console.log(dataAuthor);
@@ -73,9 +73,7 @@ if (!$searchResults) throw new Error('$searchResults not found');
 
 /// ////////////////////////Render Images from URL/////////////////
 
-function renderImages(book: Item): HTMLDivElement {
-  console.log(book);
-
+function renderImages(book: Book): HTMLDivElement {
   const $row = document.createElement('div');
   $row.className = 'row';
 
@@ -88,9 +86,9 @@ function renderImages(book: Item): HTMLDivElement {
   const $hearts = document.createElement('i');
   $hearts.className = 'fa-solid fa-heart cover-hearts';
 
-  if (book.volumeInfo.imageLinks) {
+  if (book.imageLinks) {
     const $img = document.createElement('img');
-    $img.src = book.volumeInfo.imageLinks.thumbnail;
+    $img.src = book.imageLinks.thumbnail;
     $img.alt = 'Book Cover';
     $wrapper.appendChild($img);
     $wrapper.appendChild($hearts);
@@ -98,6 +96,16 @@ function renderImages(book: Item): HTMLDivElement {
   //  else **** placeholder image?
   $row.appendChild($columnFull);
   $columnFull.appendChild($wrapper);
+
+  /// /////////////hearts button click////////////
+
+  $wrapper.addEventListener('click', (event) => {
+    const $eventTarget = event.target as HTMLElement;
+
+    if ($eventTarget.tagName === 'I') {
+      globalData.favorites.push(book);
+    }
+  });
 
   return $row;
 }
@@ -111,7 +119,7 @@ if (!$allFavorites) throw new Error('$AllFavorites query failed');
 /// ////////////// Viewswap function/////////////////
 
 function viewSwap(viewName: string): any {
-  data.view = viewName;
+  globalData.view = viewName;
   if (!$homepage) throw new Error('$homepage does not exist');
   if (!$searchResults) throw new Error('$searchResults not found');
   if (!$allFavorites) throw new Error('$allFavorites query failed');
@@ -119,21 +127,35 @@ function viewSwap(viewName: string): any {
   if (viewName === 'homepage') {
     $homepage.className = 'homepage';
     $searchResults.className = 'search-results hidden';
-  } else {
-    $homepage.className = 'homepage hidden';
+    $allFavorites.className = 'all-favorites hidden';
+  } else if (viewName === 'search-results') {
     $searchResults.className = 'search-results';
+    $allFavorites.className = 'all-favorites hidden';
+    $homepage.className = 'homepage hidden';
+  } else if (viewName === 'all-favorites') {
+    $searchResults.className = 'search-results hidden';
+    $homepage.className = 'homepage hidden';
+    $allFavorites.className = 'all-favorites';
+    /// ///////////Favorites Page /////////////
+    for (let i = 0; i < globalData.favorites.length; i++) {
+      const favBook = globalData.favorites[i];
+      const $imageRow = renderImages(favBook);
+      document.querySelector('.favorites-loaded')?.appendChild($imageRow);
+    }
   }
-
-  /// ///search results to favorites///////
-
-  // if (viewName === 'search-results') {
-  //   $searchResults.className = 'search-results';
-  //   $allFavorites.className = 'all-favorites hidden';
-  // } else {
-  //   $searchResults.className = 'search-results hidden';
-  //   $allFavorites.className = 'all-favorites';
-  // }
 }
+
+/// ///////////////Local Storage////////////
+
+// function writeGlobalData(): void {
+//   const globalDataJSON = JSON.stringify(globalData);
+//   localStorage.setItem('all-favorites', globalDataJSON);
+// }
+
+// function addGlobalData(globalBooks: GlobalData): void {
+//   globalData.push(globalBooks);
+//   writeGlobalData();
+// }
 
 const $home = document.querySelector('.home');
 if (!$home) throw new Error('$home query failed');
@@ -146,20 +168,9 @@ $home.addEventListener('click', () => {
 
 /// ///////go to favorites////////
 
-$allFavorites.addEventListener('click', () => {
+const $favorites = document.querySelector('.favorites');
+if (!$favorites) throw new Error('$favorites query failed');
+
+$favorites.addEventListener('click', () => {
   viewSwap('all-favorites');
-});
-
-/// /////////////hearts click////////////
-
-const $hearts = document.querySelector('.cover-hearts');
-if (!$hearts) throw new Error('$hearts query failed');
-
-$hearts.addEventListener('click', (event) => {
-  const $eventTarget = event.target as HTMLElement;
-
-  if ($eventTarget.tagName === 'i') {
-    const $closest = $eventTarget.closest('img');
-    $closest?.remove();
-  }
 });

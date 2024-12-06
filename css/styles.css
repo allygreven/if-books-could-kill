@@ -181,6 +181,43 @@ img {
   opacity: 1;
 }
 
+/* FAVORITES */
+.header-favorites {
+  background-image: url('../images/books-head-bar.png');
+  width: 100%;
+  height: 12vh;
+  filter: contrast(80%) brightness(80%);
+  position: relative;
+  margin-bottom: 3%;
+}
+
+#h2 {
+  margin-top: 0;
+  color: #f4f1ea;
+  font-size: 2.5rem;
+  margin-left: 5%;
+  top: 5%;
+}
+
+#favorites-loaded {
+  background-color: #212320;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 25%;
+}
+
+div[data-view='all-favorites'] .cover-hearts {
+  opacity: 1;
+}
+
+div[data-view='homepage'] .header-favorites {
+  display: none;
+}
+
 /* GENRES */
 
 /* img {
