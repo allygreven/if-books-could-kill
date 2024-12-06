@@ -18,7 +18,9 @@ async function fetchBooksByTitle(searchValue: string): Promise<void> {
       throw new Error(`HTTP error! Status: ${response1.status}`);
     }
     const dataTitle = (await response1.json()) as Data;
-    // renderImages(dataTitle)
+    if (!$searchResults) throw new Error('$searchResults not found');
+    $searchResults.innerHTML = '';
+
     for (let i = 0; i < dataTitle.items.length; i++) {
       const $authorRow = renderImages(dataTitle.items[i].volumeInfo);
       $searchResults?.appendChild($authorRow);
@@ -40,6 +42,8 @@ async function fetchBooksByAuthor(searchValue: string): Promise<void> {
       throw new Error(`HTTP error! Status: ${response2.status}`);
     }
     const dataAuthor = (await response2.json()) as Data;
+    if (!$searchResults) throw new Error('$searchResults not found');
+    $searchResults.innerHTML = '';
     for (let i = 0; i < dataAuthor.items.length; i++) {
       const $imageRow = renderImages(dataAuthor.items[i].volumeInfo);
       $searchResults?.appendChild($imageRow);
@@ -103,7 +107,17 @@ function renderImages(book: Book): HTMLDivElement {
     const $eventTarget = event.target as HTMLElement;
 
     if ($eventTarget.tagName === 'I') {
-      globalData.favorites.push(book);
+      if (globalData.favorites.length === 0) {
+        globalData.favorites.push(book);
+      } else {
+        const foundFavorites = globalData.favorites.find(
+          (favoriteBook) => favoriteBook.title === book.title,
+        );
+        if (!foundFavorites) {
+          globalData.favorites.push(book);
+        }
+      }
+      writeData();
     }
   });
 
@@ -136,26 +150,18 @@ function viewSwap(viewName: string): any {
     $searchResults.className = 'search-results hidden';
     $homepage.className = 'homepage hidden';
     $allFavorites.className = 'all-favorites';
+
     /// ///////////Favorites Page /////////////
+    const $favoritesRow = document.querySelector('.favorites-loaded');
+    if (!$favoritesRow) throw new Error('$favoritesRow does not exist');
+    $favoritesRow.innerHTML = '';
     for (let i = 0; i < globalData.favorites.length; i++) {
       const favBook = globalData.favorites[i];
       const $imageRow = renderImages(favBook);
-      document.querySelector('.favorites-loaded')?.appendChild($imageRow);
+      $favoritesRow?.appendChild($imageRow);
     }
   }
 }
-
-/// ///////////////Local Storage////////////
-
-// function writeGlobalData(): void {
-//   const globalDataJSON = JSON.stringify(globalData);
-//   localStorage.setItem('all-favorites', globalDataJSON);
-// }
-
-// function addGlobalData(globalBooks: GlobalData): void {
-//   globalData.push(globalBooks);
-//   writeGlobalData();
-// }
 
 const $home = document.querySelector('.home');
 if (!$home) throw new Error('$home query failed');

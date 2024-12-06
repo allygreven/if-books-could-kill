@@ -149,6 +149,7 @@ h2 {
   gap: 25px;
   padding-left: 25px;
   padding-right: 25px;
+  padding-bottom: 5%;
 }
 
 .bookshelf-photo {
@@ -219,21 +220,6 @@ div[data-view='homepage'] .header-favorites {
 }
 
 /* GENRES */
-
-/* img {
-  width: 200px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  height: 200px;
-  object-fit: cover;
-  object-position: center center;
-} */
-
-/* change name!!! */
-
-/* .genres {
-  display: flex;
-  position: relative;
-} */
 
 /* RESPONSIVE LAYOUT */
 
