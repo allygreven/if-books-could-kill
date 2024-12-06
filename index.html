@@ -100,11 +100,24 @@
 
         <!-- search results -->
 
-        <div data-view="search-results" id="search-results">
+        <div data-view="search-results" id="search-results" class="hidden">
           <div class="bookshelf-photo"></div>
         </div>
 
         <!-- Genres -->
+
+        <!-- Favorites -->
+
+        <div data-view="all-favorites" id="all-favorites" class="hidden">
+          <div class="row">
+            <div class="column-full">
+              <div class="header-favorites">
+                <h2 id="h2">Favorites</h2>
+              </div>
+            </div>
+          </div>
+          <div class="favorites-loaded" id="favorites-loaded"></div>
+        </div>
       </main>
     </div>
     <script src="js/data.js"></script>

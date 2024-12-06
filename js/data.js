@@ -1,7 +1,7 @@
 "use strict";
-const data = readData();
+const globalData = readData();
 function writeData() {
-    const dataJSON = JSON.stringify(data);
+    const dataJSON = JSON.stringify(globalData);
     localStorage.setItem('data storage', dataJSON);
 }
 function readData() {
@@ -11,11 +11,8 @@ function readData() {
     }
     else {
         return {
-            authors: [],
-            title: '',
-            imageLinks: null,
-            categories: [],
+            view: '',
+            favorites: [],
         };
     }
 }
-writeData();

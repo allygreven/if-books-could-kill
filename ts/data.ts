@@ -22,29 +22,26 @@ interface Data {
   totalItems: number;
 }
 
-const data = readData();
+interface GlobalData {
+  view: string;
+  favorites: Book[];
+}
+
+const globalData = readData();
 
 function writeData(): void {
-  const dataJSON = JSON.stringify(data);
+  const dataJSON = JSON.stringify(globalData);
   localStorage.setItem('data storage', dataJSON);
 }
 
-function readData(): Book {
+function readData(): GlobalData {
   const dataJSON = localStorage.getItem('data storage');
   if (dataJSON) {
     return JSON.parse(dataJSON);
   } else {
     return {
       view: '',
-      authors: [],
-      title: '',
-      imageLinks: {
-        smallThumbnail: '',
-        thumbnail: '',
-      },
-      categories: [],
+      favorites: [],
     };
   }
 }
-
-writeData();
